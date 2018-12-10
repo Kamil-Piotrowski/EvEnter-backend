@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_ocena_wspoluczestnika value)
+        public IHttpActionResult Post([FromBody]ocena_wspoluczestnika value)
         {
             try
             {
-                Database.Instance.ocena_wspoluczestnikas.InsertOnSubmit(S_ocena_wspoluczestnika.To_ocena_wspoluczestnika(value));
+                Database.Instance.ocena_wspoluczestnikas.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_ocena_wspoluczestnika value)
+        public IHttpActionResult Put(int id, [FromBody]ocena_wspoluczestnika value)
         {
             var result = Database.Instance.ocena_wspoluczestnikas.Where(x => x.id == id).FirstOrDefault();
             if (result != null)

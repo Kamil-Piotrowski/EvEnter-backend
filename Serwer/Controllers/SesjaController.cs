@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_Sesja value)
+        public IHttpActionResult Post([FromBody]Sesja value)
         {
             try
             {
-                Database.Instance.Sesjas.InsertOnSubmit(S_Sesja.To_Sesja(value));
+                Database.Instance.Sesjas.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_Sesja value)
+        public IHttpActionResult Put(int id, [FromBody]Sesja value)
         {
             var result = Database.Instance.Sesjas.Where(x => x.id_sesji == id).FirstOrDefault();
             if (result != null)

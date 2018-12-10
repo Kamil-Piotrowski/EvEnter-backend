@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_wiadomosc_grupowa value)
+        public IHttpActionResult Post([FromBody]wiadomosc_grupowa value)
         {
             try
             {
-                Database.Instance.wiadomosc_grupowas.InsertOnSubmit(S_wiadomosc_grupowa.To_wiadomosc_grupowa(value));
+                Database.Instance.wiadomosc_grupowas.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_wiadomosc_grupowa value)
+        public IHttpActionResult Put(int id, [FromBody]wiadomosc_grupowa value)
         {
             var result = Database.Instance.wiadomosc_grupowas.Where(x => x.id == id).FirstOrDefault();
             if (result != null)

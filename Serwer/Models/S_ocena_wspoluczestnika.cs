@@ -5,6 +5,11 @@ using System.Web;
 
 namespace Serwer.Models
 {
+
+    /// <summary>
+    ///   <para>Klasa odpowiadająca ocenie jednego użytkownika wystawianej przez drugiego użytkownika.</para>
+    ///   <para>Charakteryzuje się konkretną wartością, datą dodania oceny, oraz konkretnym wydarzeniem, z okazji ktrego zostaa wystawiona.</para>
+    /// </summary>
     public class S_ocena_wspoluczestnika
     {
         public int id { get; set; }

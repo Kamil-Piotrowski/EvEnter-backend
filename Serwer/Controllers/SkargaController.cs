@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_skarga value)
+        public IHttpActionResult Post([FromBody]skarga value)
         {
             try
             {
-                Database.Instance.skargas.InsertOnSubmit(S_skarga.To_skarga(value));
+                Database.Instance.skargas.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }

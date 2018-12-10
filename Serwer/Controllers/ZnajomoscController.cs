@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_znajomosc value)
+        public IHttpActionResult Post([FromBody]znajomosc value)
         {
             try
             {
-                Database.Instance.znajomoscs.InsertOnSubmit(S_znajomosc.To_znajomosc(value));
+                Database.Instance.znajomoscs.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(string login_zapraszajacego, string login_zaproszonego, [FromBody]S_znajomosc value)
+        public IHttpActionResult Put(string login_zapraszajacego, string login_zaproszonego, [FromBody]znajomosc value)
         {
             var result = Database.Instance.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego).FirstOrDefault();
             if (result != null)

@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_czlonkowstwo_w_grupie value)
+        public IHttpActionResult Post([FromBody]czlonkowstwo_w_grupie value)
         {
             try
             {
-                Database.Instance.czlonkowstwo_w_grupies.InsertOnSubmit(S_czlonkowstwo_w_grupie.To_czlonkostwo_w_grupie(value));
+                Database.Instance.czlonkowstwo_w_grupies.InsertOnSubmit(value);
                 Database.Instance.SubmitChanges();
                 return Ok();
             }

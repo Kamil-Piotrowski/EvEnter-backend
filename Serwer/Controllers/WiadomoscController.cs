@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_wiadomosc value)
+        public IHttpActionResult Post([FromBody]wiadomosc value)
         {
             try
             {
-                Database.Instance.wiadomoscs.InsertOnSubmit(S_wiadomosc.To_wiadomosc(value));
+                Database.Instance.wiadomoscs.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_wiadomosc value)
+        public IHttpActionResult Put(int id, [FromBody]wiadomosc value)
         {
             var result = Database.Instance.wiadomoscs.Where(x => x.id == id).FirstOrDefault();
             if (result != null)

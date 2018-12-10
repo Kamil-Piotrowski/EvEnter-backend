@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+/// <summary>
+/// Klasa odpowiadająca za fakt członkostwa użytkownika w grupie.
+/// Użytkownik może zatem należeć do różnych grup, a grupa może składać się z wielu użytkowników. 
+/// </summary>
 namespace Serwer.Models
 {
     public class S_czlonkowstwo_w_grupie

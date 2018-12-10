@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_przeczytanie_wiadgrup value)
+        public IHttpActionResult Post([FromBody]przeczytanie_wiadgrup value)
         {
             try
             {
-                Database.Instance.przeczytanie_wiadgrups.InsertOnSubmit(S_przeczytanie_wiadgrup.To_przeczytanie_wiadgrup(value));
+                Database.Instance.przeczytanie_wiadgrups.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_przeczytanie_wiadgrup value)
+        public IHttpActionResult Put(int id, [FromBody]przeczytanie_wiadgrup value)
         {
             var result = Database.Instance.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id).FirstOrDefault();
             if (result != null)

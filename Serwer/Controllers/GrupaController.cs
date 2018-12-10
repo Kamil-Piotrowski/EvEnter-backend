@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_Grupa value)
+        public IHttpActionResult Post([FromBody]Grupa value)
         {
             try
             {
-                Database.Instance.Grupas.InsertOnSubmit(S_Grupa.To_Grupa(value));
+                Database.Instance.Grupas.InsertOnSubmit(value);
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_Grupa value)
+        public IHttpActionResult Put(int id, [FromBody]Grupa value)
         {
             var result = Database.Instance.Grupas.Where(x => x.id == id).FirstOrDefault();
             if (result != null)

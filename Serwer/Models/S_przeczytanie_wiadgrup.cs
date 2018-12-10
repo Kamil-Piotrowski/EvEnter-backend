@@ -5,6 +5,11 @@ using System.Web;
 
 namespace Serwer.Models
 {
+
+    /// <summary>
+    /// Klasa odpowiadająca faktowi odczytania wiadomości grupowej.
+    /// Wiadomość grupowa może zostać odczytana przez każdego członka grupy.
+    /// </summary>
     public class S_przeczytanie_wiadgrup
     {
         public int id_wiadomosci_grup { get; set; }

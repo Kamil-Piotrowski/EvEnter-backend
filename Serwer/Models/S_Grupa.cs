@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Serwer.Models
 {
+    /// <summary>Klasa reprezentująca grupę. Do grupy mogą należeć użytkownicy.</summary>
     public class S_Grupa
     {
         public int id { get; set; }

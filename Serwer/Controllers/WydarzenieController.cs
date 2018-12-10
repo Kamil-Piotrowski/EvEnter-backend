@@ -28,11 +28,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
-        public IHttpActionResult Post([FromBody]S_Wydarzenie value)
+        public IHttpActionResult Post([FromBody]Wydarzenie value)
         {
             try
             {
-                Database.Instance.Wydarzenies.InsertOnSubmit(S_Wydarzenie.ToWydarzenie(value));
+                Database.Instance.Wydarzenies.InsertOnSubmit((value));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Serwer.Controllers
         }
 
         // PUT: api/User/5
-        public IHttpActionResult Put(int id, [FromBody]S_Wydarzenie value)
+        public IHttpActionResult Put(int id, [FromBody]Wydarzenie value)
         {
             var result = Database.Instance.Wydarzenies.Where(x => x.id == id).FirstOrDefault();
             if (result != null)

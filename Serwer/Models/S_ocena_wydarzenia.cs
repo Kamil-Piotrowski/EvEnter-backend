@@ -5,6 +5,11 @@ using System.Web;
 
 namespace Serwer.Models
 {
+
+    /// <summary>
+    /// Klasa odpowiadająca ocenie wystawianej przez użytkownika, odnośnie całego wydarzenia. Charakteryzuje się konkretną wartością, komentarzem
+    /// oraz datą wystawienia oceny.
+    /// </summary>
     public class S_ocena_wydarzenia
     {
         public int id { get; set; }

@@ -29,11 +29,11 @@ namespace Serwer.Controllers
         }
 
         // POST: api/Uzytkownik
-        public IHttpActionResult Post([FromBody]S_Uzytkownik value)
+        public IHttpActionResult Post([FromBody]Uzytkownik value)
         {
             try
             {
-                Database.Instance.Uzytkowniks.InsertOnSubmit(S_Uzytkownik.ToUzytkownik(value));
+                Database.Instance.Uzytkowniks.InsertOnSubmit(value);
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
