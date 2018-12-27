@@ -14,7 +14,7 @@
         <elementListCompartment Id="573bde7a-1fe9-485a-bbb5-9059538fc4e1" absoluteBounds="6.39, 10.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 10.8806469726562); (8.875 : 10.8806469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 10.8806469726562); (8.875 : 10.8806469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBDataContext/Grupa/Grupa_czlonkowstwo_w_grupie" />
       <nodes>
         <classShapeMoniker Id="92883606-c19c-41a3-9975-2ed836f75b7a" />
@@ -63,18 +63,6 @@
         <elementListCompartment Id="a5ca21f9-38e6-4246-b242-b94d254ba786" absoluteBounds="13.89, 8.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" absoluteBounds="11.875, 9.875, 2, 2.5401025390625005">
-      <DataClassMoniker Name="/DBDataContext/Uzytkownik" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3bc4a5a0-9aa5-4653-a3f6-cabb66a5ca38" absoluteBounds="11.89, 10.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="160c97ab-37ab-4db8-bb7b-a1ffa0027f73" absoluteBounds="14.625, 10, 2, 1.9631982421875023">
-      <DataClassMoniker Name="/DBDataContext/wiadomosc" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b334e67a-bba8-4893-b3f7-7ec8d985e58f" absoluteBounds="14.64, 10.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="120cb622-004b-4db3-bf1a-96d6be2ea6b7" absoluteBounds="8.875, 8, 2, 1.7708968098958327">
       <DataClassMoniker Name="/DBDataContext/wiadomosc_grupowa" />
       <nestedChildShapes>
@@ -87,151 +75,163 @@
         <elementListCompartment Id="e38d3821-58bc-4d72-903a-6505f5256d7a" absoluteBounds="17.015, 8.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.875 : 10.5681469726562); (10.875 : 10.5681469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_czlonkowstwo_w_grupie" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="72fb31e4-c20a-488c-af73-0d3317beba55" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.875 : 11.7973453776042); (8.375 : 11.7973453776042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_Grupa" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="92883606-c19c-41a3-9975-2ed836f75b7a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.0269985206097 : 9.875); (13.0269985206097 : 6.98159912109375); (13.875 : 6.98159912109375)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wspoluczestnika" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="56fedf31-060c-4a36-b882-3d02d30e1f76" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.362141400099 : 9.875); (13.362141400099 : 7.50365118164063); (13.875 : 7.50365118164063)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wspoluczestnika1" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="56fedf31-060c-4a36-b882-3d02d30e1f76" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(12.7084988564274 : 12.4151025390625); (12.7084988564274 : 13.9431469726563); (12 : 13.9431469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_znajomosc" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="ec3cfa90-e4b3-4cbc-9964-47b646c1d8ea" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(12.3044697102948 : 12.4151025390625); (12.3044697102948 : 13.5653209863281); (12 : 13.5653209863281)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_znajomosc1" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="ec3cfa90-e4b3-4cbc-9964-47b646c1d8ea" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.6657359620872 : 12.4151025390625); (13.6657359620872 : 12.8125); (16.28125 : 12.8125); (16.28125 : 13.1065991210937); (16.375 : 13.1065991210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wydarzenia" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="943de943-96e9-4930-995f-6933be2cdf5e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(12.5117049428357 : 9.875); (12.5117049428357 : 6.94314697265625); (10.875 : 6.94314697265625)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_przeczytanie_wiadgrup" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="f4710ee1-b03e-4199-a46c-c477603fda0a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(12.5064842833611 : 12.4151025390625); (12.5064842833611 : 13); (12.3878030436281 : 13 : JumpStart); (12.2211363769614 : 13 : JumpEnd); (8.75 : 13)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_Sesja" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="6ccbe3fe-3eab-4136-b570-252c3d66540a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.11252800256 : 12.4151025390625); (13.11252800256 : 12.625); (13.5824026287539 : 12.625 : JumpStart); (13.7490692954205 : 12.625 : JumpEnd); (15.125 : 12.625); (15.125 : 12.875)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_skarga" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="10daf8fc-5833-44c4-a257-a2b20fd616e9" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.3939679241744 : 12.4151025390625); (13.3939679241744 : 12.6875); (13.5824026287539 : 12.6875 : JumpStart); (13.7490692954205 : 12.6875 : JumpEnd); (14.593748 : 12.6875); (14.593748 : 12.875)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_skarga1" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="10daf8fc-5833-44c4-a257-a2b20fd616e9" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.6005665683227 : 9.875); (13.6005665683227 : 8.81814697265625); (13.875 : 8.81814697265625)]" fixedFrom="Caller" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_udzial_w_wydarzeniu" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="a275796f-7493-423e-9c89-c2af1e2995ec" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.875 : 10.9815991210938); (14.625 : 10.9815991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="160c97ab-37ab-4db8-bb7b-a1ffa0027f73" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.875 : 10.4282995605469); (14.625 : 10.4282995605469)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc1" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="160c97ab-37ab-4db8-bb7b-a1ffa0027f73" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.875 : 8); (9.875 : 7.6362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.875 : 8); (9.875 : 7.6362939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBDataContext/wiadomosc_grupowa/wiadomosc_grupowa_przeczytanie_wiadgrup" />
       <nodes>
         <classShapeMoniker Id="120cb622-004b-4db3-bf1a-96d6be2ea6b7" />
         <classShapeMoniker Id="f4710ee1-b03e-4199-a46c-c477603fda0a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.375 : 10.5); (7.375 : 8.88544840494792); (8.875 : 8.88544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.375 : 10.5); (7.375 : 8.88544840494792); (8.875 : 8.88544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBDataContext/Grupa/Grupa_wiadomosc_grupowa" />
       <nodes>
         <classShapeMoniker Id="92883606-c19c-41a3-9975-2ed836f75b7a" />
         <classShapeMoniker Id="120cb622-004b-4db3-bf1a-96d6be2ea6b7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(12.1620999714179 : 9.875); (12.1620999714179 : 9.20077439127604); (10.875 : 9.20077439127604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc_grupowa" />
-      <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
-        <classShapeMoniker Id="120cb622-004b-4db3-bf1a-96d6be2ea6b7" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(18 : 8.5); (18 : 6.98159912109375); (15.875 : 6.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(18 : 8.5); (18 : 6.98159912109375); (15.875 : 6.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBDataContext/Wydarzenie/Wydarzenie_ocena_wspoluczestnika" />
       <nodes>
         <classShapeMoniker Id="911c522b-a3f7-4454-a447-5e01055bb621" />
         <classShapeMoniker Id="56fedf31-060c-4a36-b882-3d02d30e1f76" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(17.6875 : 10.6554996744792); (17.6875 : 12.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(17.78125 : 10.6554996744792); (17.78125 : 12.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DBDataContext/Wydarzenie/Wydarzenie_ocena_wydarzenia" />
       <nodes>
         <classShapeMoniker Id="911c522b-a3f7-4454-a447-5e01055bb621" />
         <classShapeMoniker Id="943de943-96e9-4930-995f-6933be2cdf5e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(17 : 9.00564697265625); (15.875 : 9.00564697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(17 : 9.00564697265625); (15.875 : 9.00564697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBDataContext/Wydarzenie/Wydarzenie_udzial_w_wydarzeniu" />
       <nodes>
         <classShapeMoniker Id="911c522b-a3f7-4454-a447-5e01055bb621" />
         <classShapeMoniker Id="a275796f-7493-423e-9c89-c2af1e2995ec" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.8182159312703 : 9.875); (13.8182159312703 : 9.57774983723958); (17 : 9.57774983723958)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="NotFixed">
+    <classShape Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" absoluteBounds="11.375, 10, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/DBDataContext/Uzytkownik" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fcfef664-367e-480a-87f2-63e5e0baeaa1" absoluteBounds="11.39, 10.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.375 : 10.6306469726562); (10.875 : 10.6306469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_czlonkowstwo_w_grupie" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="72fb31e4-c20a-488c-af73-0d3317beba55" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.375 : 11.7973453776042); (8.375 : 11.7973453776042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_Grupa" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="92883606-c19c-41a3-9975-2ed836f75b7a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.375 : 10); (12.375 : 6.98159912109375); (13.875 : 6.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wspoluczestnika" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="56fedf31-060c-4a36-b882-3d02d30e1f76" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.9062525 : 10); (12.9062525 : 7.50365118164063); (13.875 : 7.50365118164063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wspoluczestnika1" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="56fedf31-060c-4a36-b882-3d02d30e1f76" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.6875 : 12.7324039713542); (11.6875 : 13.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_znajomosc" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="ec3cfa90-e4b3-4cbc-9964-47b646c1d8ea" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.90625 : 12.7324039713542); (11.90625 : 13.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_znajomosc1" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="ec3cfa90-e4b3-4cbc-9964-47b646c1d8ea" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 12.3059027392578); (14.0885366666667 : 12.3059027392578 : JumpStart); (14.2552033333333 : 12.3059027392578 : JumpEnd); (16.375 : 12.3059027392578)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_ocena_wydarzenia" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="943de943-96e9-4930-995f-6933be2cdf5e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.8437475 : 10); (11.8437475 : 6.61579956054688); (10.875 : 6.61579956054688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_przeczytanie_wiadgrup" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="f4710ee1-b03e-4199-a46c-c477603fda0a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.671877 : 12.7324039713542); (12.671877 : 13); (11.9895833333333 : 13 : JumpStart); (11.8229166666667 : 13 : JumpEnd); (11.7708333333333 : 13 : JumpStart); (11.6041666666667 : 13 : JumpEnd); (9.125 : 13); (9.125 : 13.2892976888021); (8.75 : 13.2892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_Sesja" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="6ccbe3fe-3eab-4136-b570-252c3d66540a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 12.0720479907227); (14.17187 : 12.0720479907227); (14.17187 : 12.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_skarga" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="10daf8fc-5833-44c4-a257-a2b20fd616e9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 12.6118054785156); (14.2031225 : 12.6118054785156); (14.2031225 : 12.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_skarga1" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="10daf8fc-5833-44c4-a257-a2b20fd616e9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 10); (13.875 : 9.5112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_udzial_w_wydarzeniu" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="a275796f-7493-423e-9c89-c2af1e2995ec" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.375 : 10); (10.875 : 9.77089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc_grupowa" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="120cb622-004b-4db3-bf1a-96d6be2ea6b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 11.9815991210937); (17.6979166666667 : 11.9815991210937 : JumpStart); (17.8645833333333 : 11.9815991210937 : JumpEnd); (18.71875 : 11.9815991210937); (18.71875 : 10.6554996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_Wydarzenie" />
       <nodes>
-        <classShapeMoniker Id="db6c2c15-1c08-4397-842f-4cb74c46eae4" />
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
         <classShapeMoniker Id="911c522b-a3f7-4454-a447-5e01055bb621" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1b339363-8fa5-4a02-9540-a571327521ac" absoluteBounds="14.375, 9.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DBDataContext/wiadomosc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e9c85c9-11af-48a6-907a-e3e249ead1d3" absoluteBounds="14.39, 10.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(13.375 : 10.9503516210937); (14.375 : 10.9503516210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="1b339363-8fa5-4a02-9540-a571327521ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.375 : 10.4439283105469); (14.375 : 10.4439283105469)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Uzytkownik/Uzytkownik_wiadomosc1" />
+      <nodes>
+        <classShapeMoniker Id="78254b6f-9446-4b28-9ab9-c8829b1c45b6" />
+        <classShapeMoniker Id="1b339363-8fa5-4a02-9540-a571327521ac" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

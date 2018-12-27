@@ -15,6 +15,7 @@ namespace Serwer.Models
         public string nr_telefonu { get; set; }
         public bool? zweryfikowane { get; set; }
         public string skrot_hasla { get; set; }
+        public int? id { get; set; }
 
         public S_Uzytkownik(Uzytkownik u)
         {
@@ -26,6 +27,7 @@ namespace Serwer.Models
             this.nr_telefonu = u.nr_telefonu;
             this.zweryfikowane = u.zweryfikowane;
             this.skrot_hasla = u.skrot_hasla;
+            this.id = u.id;
 
         }
 
@@ -40,7 +42,8 @@ namespace Serwer.Models
                 data_urodzenia = value.data_urodzenia,
                 nr_telefonu = value.nr_telefonu,
                 zweryfikowane = value.zweryfikowane,
-                skrot_hasla = value.skrot_hasla
+                skrot_hasla = value.skrot_hasla,
+                id = value.id
 
             };
         }

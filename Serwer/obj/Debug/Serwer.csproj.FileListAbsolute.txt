@@ -193,8 +193,8 @@ C:\Users\koko\Desktop\stasiak\Serwer\Serwer\bin\Microsoft.AI.DependencyCollector
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\bin\Microsoft.AI.Web.xml
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.csprojAssemblyReference.cache
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.csproj.CoreCompileInputs.cache
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.csproj.CopyComplete
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.dll
 C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.pdb
+C:\Users\koko\Desktop\stasiak\Serwer\Serwer\obj\Debug\Serwer.csprojAssemblyReference.cache

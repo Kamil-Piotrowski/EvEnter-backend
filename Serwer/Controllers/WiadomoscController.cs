@@ -8,8 +8,10 @@ using System.Web.Http;
 
 namespace Serwer.Controllers
 {
+    [RoutePrefix("api/Wiadomosc")]
     public class WiadomoscController : ApiController
     {
+        [Route("")]
         public IHttpActionResult Get()
         {
             var result = Database.Instance.wiadomoscs;
@@ -19,6 +21,7 @@ namespace Serwer.Controllers
         }
 
         // GET: api/User/5
+        [Route("{id:int}")]
         public object Get(int id)
         {
             var result = Database.Instance.wiadomoscs.Where(x => x.id == id);
@@ -28,16 +31,25 @@ namespace Serwer.Controllers
         }
 
         // POST: api/User
+        [Route("add")]
         public IHttpActionResult Post([FromBody]wiadomosc value)
         {
             try
             {
-                Database.Instance.wiadomoscs.InsertOnSubmit((value));
+                int id;
+                var ids = Database.Instance.wiadomoscs.Select(x => x.id);
+                if (ids.Count() > 0)
+                    id = ids.Max() + 1;
+                else
+                    id = 1;
+                wiadomosc w = new wiadomosc { id =(int) id, login_nadawcy = value.login_nadawcy, login_odbiorcy = value.login_odbiorcy, tresc = value.tresc, data_wyslania = value.data_wyslania };
+                Database.Instance.wiadomoscs.InsertOnSubmit((w));
                 Database.Instance.SubmitChanges();
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
+                e.ToString();
                 return Ok("Niestety nastąpił błąd");
             }
 
