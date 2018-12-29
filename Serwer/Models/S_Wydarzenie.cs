@@ -11,8 +11,8 @@ namespace Serwer.Models
         public float? wysokosc { get; set; }
         public float? szerokosc { get; set; }
         public string login_organizatora { get; set; }
-        public DateTime data_poczatku { get; set; }
-        public DateTime? data_konca { get; set; }
+        public string data_poczatku { get; set; }
+        public string data_konca { get; set; }
         public  string nazwa_wydarzenia { get; set; }
 
         public S_Wydarzenie(Wydarzenie w)
@@ -21,8 +21,11 @@ namespace Serwer.Models
             this.wysokosc = w.wysokosc;
             this.szerokosc = w.szerokosc;
             this.login_organizatora = w.login_organizatora;
-            this.data_poczatku = w.data_poczatku;
-            this.data_konca = w.data_konca;
+
+
+            this.data_poczatku = w.data_poczatku.ToString("dd/MM/yyyy");
+            if(w.data_konca != null)
+                this.data_konca = ((DateTime)w.data_konca).ToString("dd/MM/yyyy");
             this.nazwa_wydarzenia = w.nazwa_wydarzenia;
         }
 
@@ -34,8 +37,8 @@ namespace Serwer.Models
                 wysokosc = value.wysokosc,
                 szerokosc = value.szerokosc,
                 login_organizatora = value.login_organizatora,
-                data_poczatku = value.data_poczatku,
-                data_konca = value.data_konca,
+                data_poczatku = DateTime.Parse(value.data_poczatku),
+                data_konca = DateTime.Parse(value.data_konca),
                 nazwa_wydarzenia = value.nazwa_wydarzenia
 
             };
