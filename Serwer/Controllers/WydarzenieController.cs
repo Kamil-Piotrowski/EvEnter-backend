@@ -8,8 +8,10 @@ using System.Web.Http;
 
 namespace Serwer.Controllers
 {
+    [RoutePrefix("api/Wydarzenie")]
     public class WydarzenieController : ApiController
     {
+        [Route("")]
         public IHttpActionResult Get()
         {
             var result = Database.Instance.Wydarzenies;
@@ -18,7 +20,8 @@ namespace Serwer.Controllers
             return Ok(result.Select(x=>new S_Wydarzenie(x)));
         }
 
-        // GET: api/User/5
+
+        [Route("{id:int}")]
         public object Get(int id)
         {
             var result = Database.Instance.Wydarzenies.Where(x => x.id == id);
@@ -27,7 +30,28 @@ namespace Serwer.Controllers
             return Ok(result.Select(x => new S_Wydarzenie(x)));
         }
 
-        // POST: api/User
+        [Route("organizowane-przeze-mnie/{login}")]
+        public object Get(string login)
+        {
+            var result = Database.Instance.Wydarzenies.Where(x => x.login_organizatora == login);
+            if (result == null)
+                return NotFound();
+            return Ok(result.Select(x => new S_Wydarzenie(x)));
+        }
+
+        [Route("moje-wydarzenia/{login}")]
+        public object GetByAttendance(string login)
+        {
+            var result = Database.Instance.udzial_w_wydarzenius
+                .Where(x => x.login_uczestnika == login)
+                .Select(x => x.Wydarzenie).ToList();
+
+            if (result == null)
+                return NotFound();
+            return Ok(result.Select(x => new S_Wydarzenie(x)));
+        }
+
+        [Route("add")]
         public IHttpActionResult Post([FromBody]Wydarzenie value)
         {
             try

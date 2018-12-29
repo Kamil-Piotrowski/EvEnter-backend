@@ -29,6 +29,35 @@ namespace Serwer.Controllers
                 return NotFound();
             return Ok(result.Select(x => new S_wiadomosc(x)));
         }
+        [Route("my-conversations/{login}")]
+        public IHttpActionResult Get(string login)
+        {
+            var messages = Database.Instance.wiadomoscs.
+                Where(x => x.login_odbiorcy == login || x.login_nadawcy == login);
+
+            List<string> result = messages.Select(x => x.login_nadawcy).ToList();
+            result.AddRange(messages.Select(x=>x.login_odbiorcy));
+            result = result.Distinct().ToList();
+            result.Remove(login);
+            
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+        [Route("my-messages/{me}/{other}")]
+        public object GetMyMessages(string login, string other)
+        {
+            var result = Database.Instance.wiadomoscs
+                .Where(
+                    x => 
+                    x.login_odbiorcy == login && x.login_nadawcy == other
+                    ||
+                    x.login_nadawcy == login && x.login_odbiorcy == other
+                    );
+            if (result == null)
+                return NotFound();
+            return Ok(result.Select(x => new S_wiadomosc(x)));
+        }
 
         // POST: api/User
         [Route("add")]

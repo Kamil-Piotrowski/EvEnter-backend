@@ -39,7 +39,7 @@ namespace Serwer.Controllers
             return Ok(result.Select(x => new S_Uzytkownik(x)));
         }
 
-        // POST: api/Uzytkownik
+        [Route("add")]
         public IHttpActionResult Post([FromBody]Uzytkownik value)
         {
             try
@@ -50,10 +50,17 @@ namespace Serwer.Controllers
             }
             catch
             {
-                return Ok("Niestety nastąpił błąd");
+                return Unauthorized();
             }
 
 
+        }
+        [Route("start")]
+        public IHttpActionResult AuthenticateUser([FromBody]Uzytkownik value)
+        {
+            if (Database.Instance.Uzytkowniks.Where(x => x.login == value.login && x.skrot_hasla == value.skrot_hasla).Count() > 0)
+                return Ok();
+            else return Unauthorized();
         }
 
         // PUT: api/Uzytkownik/5
