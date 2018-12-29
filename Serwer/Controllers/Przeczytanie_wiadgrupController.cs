@@ -12,7 +12,8 @@ namespace Serwer.Controllers
     {
         public IHttpActionResult Get()
         {
-            var result = Database.Instance.przeczytanie_wiadgrups;
+            DBDataContext db = new DBDataContext();
+            var result = db.przeczytanie_wiadgrups;
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_przeczytanie_wiadgrup(x)));
@@ -21,7 +22,8 @@ namespace Serwer.Controllers
         // GET: api/User/5
         public object Get(int id)
         {
-            var result = Database.Instance.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id);
+            DBDataContext db = new DBDataContext();
+            var result = db.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_przeczytanie_wiadgrup(x)));
@@ -30,10 +32,11 @@ namespace Serwer.Controllers
         // POST: api/User
         public IHttpActionResult Post([FromBody]przeczytanie_wiadgrup value)
         {
+            DBDataContext db = new DBDataContext();
             try
             {
-                Database.Instance.przeczytanie_wiadgrups.InsertOnSubmit((value));
-                Database.Instance.SubmitChanges();
+                db.przeczytanie_wiadgrups.InsertOnSubmit((value));
+                db.SubmitChanges();
                 return Ok();
             }
             catch
@@ -47,12 +50,13 @@ namespace Serwer.Controllers
         // PUT: api/User/5
         public IHttpActionResult Put(int id, [FromBody]przeczytanie_wiadgrup value)
         {
-            var result = Database.Instance.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id).FirstOrDefault();
             if (result != null)
             {
                 //result.Name = value.Name;
                 //result.HowManyLegs = value.HowManyLegs;
-                Database.Instance.SubmitChanges();
+                db.SubmitChanges();
                 return Ok();
             }
             return Ok("Nastąpił jakiś błąd");
@@ -63,11 +67,12 @@ namespace Serwer.Controllers
         // DELETE: api/User/5
         public IHttpActionResult Delete(int id)
         {
-            var result = Database.Instance.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.przeczytanie_wiadgrups.Where(x => x.id_wiadomosci_grup == id).FirstOrDefault();
             if (result != null)
             {
-                Database.Instance.przeczytanie_wiadgrups.DeleteOnSubmit(result);
-                Database.Instance.SubmitChanges();
+                db.przeczytanie_wiadgrups.DeleteOnSubmit(result);
+                db.SubmitChanges();
                 return Ok();
             }
             return NotFound();

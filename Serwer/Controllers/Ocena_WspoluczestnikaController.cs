@@ -12,7 +12,8 @@ namespace Serwer.Controllers
     {
         public IHttpActionResult Get()
         {
-            var result = Database.Instance.ocena_wspoluczestnikas;
+            DBDataContext db = new DBDataContext();
+            var result = db.ocena_wspoluczestnikas;
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_ocena_wspoluczestnika(x)));
@@ -21,7 +22,8 @@ namespace Serwer.Controllers
         // GET: api/User/5
         public object Get(int id)
         {
-            var result = Database.Instance.ocena_wspoluczestnikas.Where(x => x.id == id);
+            DBDataContext db = new DBDataContext();
+            var result = db.ocena_wspoluczestnikas.Where(x => x.id == id);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_ocena_wspoluczestnika(x)));
@@ -30,10 +32,11 @@ namespace Serwer.Controllers
         // POST: api/User
         public IHttpActionResult Post([FromBody]ocena_wspoluczestnika value)
         {
+            DBDataContext db = new DBDataContext();
             try
             {
-                Database.Instance.ocena_wspoluczestnikas.InsertOnSubmit((value));
-                Database.Instance.SubmitChanges();
+                db.ocena_wspoluczestnikas.InsertOnSubmit((value));
+                db.SubmitChanges();
                 return Ok();
             }
             catch
@@ -47,12 +50,13 @@ namespace Serwer.Controllers
         // PUT: api/User/5
         public IHttpActionResult Put(int id, [FromBody]ocena_wspoluczestnika value)
         {
-            var result = Database.Instance.ocena_wspoluczestnikas.Where(x => x.id == id).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.ocena_wspoluczestnikas.Where(x => x.id == id).FirstOrDefault();
             if (result != null)
             {
                 //result.Name = value.Name;
                 //result.HowManyLegs = value.HowManyLegs;
-                Database.Instance.SubmitChanges();
+                db.SubmitChanges();
                 return Ok();
             }
             return Ok("Nastąpił jakiś błąd");
@@ -63,11 +67,12 @@ namespace Serwer.Controllers
         // DELETE: api/User/5
         public IHttpActionResult Delete(int id)
         {
-            var result = Database.Instance.ocena_wspoluczestnikas.Where(x => x.id == id).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.ocena_wspoluczestnikas.Where(x => x.id == id).FirstOrDefault();
             if (result != null)
             {
-                Database.Instance.ocena_wspoluczestnikas.DeleteOnSubmit(result);
-                Database.Instance.SubmitChanges();
+                db.ocena_wspoluczestnikas.DeleteOnSubmit(result);
+                db.SubmitChanges();
                 return Ok();
             }
             return NotFound();

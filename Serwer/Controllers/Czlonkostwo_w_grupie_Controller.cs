@@ -12,7 +12,8 @@ namespace Serwer.Controllers
     {
         public IHttpActionResult Get()
         {
-            var result = Database.Instance.czlonkowstwo_w_grupies;
+            DBDataContext db = new DBDataContext();
+            var result = db.czlonkowstwo_w_grupies;
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_czlonkowstwo_w_grupie(x)));
@@ -21,7 +22,8 @@ namespace Serwer.Controllers
         // GET: api/User/5
         public object Get(int id)
         {
-            var result = Database.Instance.czlonkowstwo_w_grupies.Where(x => x.id_grupy == id);
+            DBDataContext db = new DBDataContext();
+            var result = db.czlonkowstwo_w_grupies.Where(x => x.id_grupy == id);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_czlonkowstwo_w_grupie(x)));
@@ -30,10 +32,11 @@ namespace Serwer.Controllers
         // POST: api/User
         public IHttpActionResult Post([FromBody]czlonkowstwo_w_grupie value)
         {
+            DBDataContext db = new DBDataContext();
             try
             {
-                Database.Instance.czlonkowstwo_w_grupies.InsertOnSubmit(value);
-                Database.Instance.SubmitChanges();
+                db.czlonkowstwo_w_grupies.InsertOnSubmit(value);
+                db.SubmitChanges();
                 return Ok();
             }
             catch
@@ -64,11 +67,12 @@ namespace Serwer.Controllers
         // DELETE: api/User/5
         public IHttpActionResult Delete(int id_grupy, string login_czlonka)
         {
-            var result = Database.Instance.czlonkowstwo_w_grupies.Where(x => x.id_grupy == id_grupy && x.login_czlonka == login_czlonka).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.czlonkowstwo_w_grupies.Where(x => x.id_grupy == id_grupy && x.login_czlonka == login_czlonka).FirstOrDefault();
             if (result != null)
             {
-                Database.Instance.czlonkowstwo_w_grupies.DeleteOnSubmit(result);
-                Database.Instance.SubmitChanges();
+                db.czlonkowstwo_w_grupies.DeleteOnSubmit(result);
+                db.SubmitChanges();
                 return Ok();
             }
             return NotFound();

@@ -181,7 +181,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Database.cs" />
     <Compile Include="Models\S_czlonkowstwo_w_grupie.cs" />
     <Compile Include="Models\S_Grupa.cs" />
     <Compile Include="Models\S_ocena_wspoluczestnika.cs" />

@@ -8,12 +8,12 @@ namespace Serwer.Models
     public class S_Wydarzenie
     {
         public int id { get; set; }
-        public float wysokosc { get; set; }
-        public float szerokosc { get; set; }
+        public float? wysokosc { get; set; }
+        public float? szerokosc { get; set; }
         public string login_organizatora { get; set; }
         public DateTime data_poczatku { get; set; }
-        public DateTime data_konca { get; set; }
-        public  char dostepnosc{ get; set; }
+        public DateTime? data_konca { get; set; }
+        public  string nazwa_wydarzenia { get; set; }
 
         public S_Wydarzenie(Wydarzenie w)
         {
@@ -23,7 +23,7 @@ namespace Serwer.Models
             this.login_organizatora = w.login_organizatora;
             this.data_poczatku = w.data_poczatku;
             this.data_konca = w.data_konca;
-            this.dostepnosc = w.dostepnosc;
+            this.nazwa_wydarzenia = w.nazwa_wydarzenia;
         }
 
         internal static Wydarzenie ToWydarzenie(S_Wydarzenie value)
@@ -36,7 +36,7 @@ namespace Serwer.Models
                 login_organizatora = value.login_organizatora,
                 data_poczatku = value.data_poczatku,
                 data_konca = value.data_konca,
-                dostepnosc = value.dostepnosc
+                nazwa_wydarzenia = value.nazwa_wydarzenia
 
             };
         }

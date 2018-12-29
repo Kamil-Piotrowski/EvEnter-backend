@@ -12,7 +12,8 @@ namespace Serwer.Controllers
     {
         public IHttpActionResult Get()
         {
-            var result = Database.Instance.znajomoscs;
+            DBDataContext db = new DBDataContext();
+            var result = db.znajomoscs;
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_znajomosc(x)));
@@ -21,7 +22,8 @@ namespace Serwer.Controllers
         // GET: api/User/5
         public object Get(string login_zapraszajacego, string login_zaproszonego)
         {
-            var result = Database.Instance.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego);
+            DBDataContext db = new DBDataContext();
+            var result = db.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_znajomosc(x)));
@@ -30,10 +32,11 @@ namespace Serwer.Controllers
         // POST: api/User
         public IHttpActionResult Post([FromBody]znajomosc value)
         {
+            DBDataContext db = new DBDataContext();
             try
             {
-                Database.Instance.znajomoscs.InsertOnSubmit((value));
-                Database.Instance.SubmitChanges();
+                db.znajomoscs.InsertOnSubmit((value));
+                db.SubmitChanges();
                 return Ok();
             }
             catch
@@ -47,12 +50,13 @@ namespace Serwer.Controllers
         // PUT: api/User/5
         public IHttpActionResult Put(string login_zapraszajacego, string login_zaproszonego, [FromBody]znajomosc value)
         {
-            var result = Database.Instance.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego).FirstOrDefault();
             if (result != null)
             {
                 //result.Name = value.Name;
                 //result.HowManyLegs = value.HowManyLegs;
-                Database.Instance.SubmitChanges();
+                db.SubmitChanges();
                 return Ok();
             }
             return Ok("Nastąpił jakiś błąd");
@@ -63,11 +67,12 @@ namespace Serwer.Controllers
         // DELETE: api/User/5
         public IHttpActionResult Delete(string login_zapraszajacego, string login_zaproszonego)
         {
-            var result = Database.Instance.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.znajomoscs.Where(x => x.login_zapraszajacego == login_zapraszajacego && x.login_zaproszonego == login_zaproszonego).FirstOrDefault();
             if (result != null)
             {
-                Database.Instance.znajomoscs.DeleteOnSubmit(result);
-                Database.Instance.SubmitChanges();
+                db.znajomoscs.DeleteOnSubmit(result);
+                db.SubmitChanges();
                 return Ok();
             }
             return NotFound();

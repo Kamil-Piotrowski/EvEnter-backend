@@ -29,9 +29,9 @@
       <Column Name="data_dodania" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ocena" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="id_wydarzenia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Wydarzenie_ocena_wspoluczestnika" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
       <Association Name="Uzytkownik_ocena_wspoluczestnika" Member="Uzytkownik" ThisKey="login_oceniajacego" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
       <Association Name="Uzytkownik_ocena_wspoluczestnika1" Member="Uzytkownik1" ThisKey="login_ocenianego" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
+      <Association Name="Wydarzenie_ocena_wspoluczestnika" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.znajomosc" Member="znajomoscs">
@@ -51,8 +51,8 @@
       <Column Name="ocena" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="komentarz" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
       <Column Name="data_dodania" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Wydarzenie_ocena_wydarzenia" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
       <Association Name="Uzytkownik_ocena_wydarzenia" Member="Uzytkownik" ThisKey="login_oceniajacego" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
+      <Association Name="Wydarzenie_ocena_wydarzenia" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.przeczytanie_wiadgrup" Member="przeczytanie_wiadgrups">
@@ -91,8 +91,8 @@
       <Column Name="login_uczestnika" Type="System.String" DbType="Char(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="id_wydarzenia" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="data_dolaczenia" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Wydarzenie_udzial_w_wydarzeniu" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
       <Association Name="Uzytkownik_udzial_w_wydarzeniu" Member="Uzytkownik" ThisKey="login_uczestnika" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
+      <Association Name="Wydarzenie_udzial_w_wydarzeniu" Member="Wydarzenie" ThisKey="id_wydarzenia" OtherKey="id" Type="Wydarzenie" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.wiadomosc_grupowa" Member="wiadomosc_grupowas">
@@ -105,21 +105,6 @@
       <Association Name="wiadomosc_grupowa_przeczytanie_wiadgrup" Member="przeczytanie_wiadgrups" ThisKey="id" OtherKey="id_wiadomosci_grup" Type="przeczytanie_wiadgrup" />
       <Association Name="Grupa_wiadomosc_grupowa" Member="Grupa" ThisKey="id_grupy" OtherKey="id" Type="Grupa" IsForeignKey="true" />
       <Association Name="Uzytkownik_wiadomosc_grupowa" Member="Uzytkownik" ThisKey="login_nadawcy" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Wydarzenie" Member="Wydarzenies">
-    <Type Name="Wydarzenie">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="wysokosc" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
-      <Column Name="szerokosc" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
-      <Column Name="login_organizatora" Type="System.String" DbType="Char(15) NOT NULL" CanBeNull="false" />
-      <Column Name="data_poczatku" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="data_konca" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="dostepnosc" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Association Name="Wydarzenie_ocena_wspoluczestnika" Member="ocena_wspoluczestnikas" ThisKey="id" OtherKey="id_wydarzenia" Type="ocena_wspoluczestnika" />
-      <Association Name="Wydarzenie_ocena_wydarzenia" Member="ocena_wydarzenias" ThisKey="id" OtherKey="id_wydarzenia" Type="ocena_wydarzenia" />
-      <Association Name="Wydarzenie_udzial_w_wydarzeniu" Member="udzial_w_wydarzenius" ThisKey="id" OtherKey="id_wydarzenia" Type="udzial_w_wydarzeniu" />
-      <Association Name="Uzytkownik_Wydarzenie" Member="Uzytkownik" ThisKey="login_organizatora" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Uzytkownik" Member="Uzytkowniks">
@@ -147,9 +132,9 @@
       <Association Name="Uzytkownik_skarga1" Member="skargas1" ThisKey="login" OtherKey="login_powoda" Type="skarga" />
       <Association Name="Uzytkownik_udzial_w_wydarzeniu" Member="udzial_w_wydarzenius" ThisKey="login" OtherKey="login_uczestnika" Type="udzial_w_wydarzeniu" />
       <Association Name="Uzytkownik_wiadomosc_grupowa" Member="wiadomosc_grupowas" ThisKey="login" OtherKey="login_nadawcy" Type="wiadomosc_grupowa" />
-      <Association Name="Uzytkownik_Wydarzenie" Member="Wydarzenies" ThisKey="login" OtherKey="login_organizatora" Type="Wydarzenie" />
       <Association Name="Uzytkownik_wiadomosc" Member="wiadomoscs" ThisKey="login" OtherKey="login_nadawcy" Type="wiadomosc" />
       <Association Name="Uzytkownik_wiadomosc1" Member="wiadomoscs1" ThisKey="login" OtherKey="login_odbiorcy" Type="wiadomosc" />
+      <Association Name="Uzytkownik_Wydarzenie" Member="Wydarzenies" ThisKey="login" OtherKey="login_organizatora" Type="Wydarzenie" />
     </Type>
   </Table>
   <Table Name="dbo.wiadomosc" Member="wiadomoscs">
@@ -162,6 +147,21 @@
       <Column Name="data_odebrania" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Uzytkownik_wiadomosc" Member="Uzytkownik" ThisKey="login_nadawcy" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
       <Association Name="Uzytkownik_wiadomosc1" Member="Uzytkownik1" ThisKey="login_odbiorcy" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Wydarzenie" Member="Wydarzenies">
+    <Type Name="Wydarzenie">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="wysokosc" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="szerokosc" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="login_organizatora" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="data_poczatku" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="data_konca" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="nazwa_wydarzenia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="Wydarzenie_ocena_wspoluczestnika" Member="ocena_wspoluczestnikas" ThisKey="id" OtherKey="id_wydarzenia" Type="ocena_wspoluczestnika" />
+      <Association Name="Wydarzenie_ocena_wydarzenia" Member="ocena_wydarzenias" ThisKey="id" OtherKey="id_wydarzenia" Type="ocena_wydarzenia" />
+      <Association Name="Wydarzenie_udzial_w_wydarzeniu" Member="udzial_w_wydarzenius" ThisKey="id" OtherKey="id_wydarzenia" Type="udzial_w_wydarzeniu" />
+      <Association Name="Uzytkownik_Wydarzenie" Member="Uzytkownik" ThisKey="login_organizatora" OtherKey="login" Type="Uzytkownik" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

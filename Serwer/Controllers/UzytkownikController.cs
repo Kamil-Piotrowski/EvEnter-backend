@@ -15,7 +15,8 @@ namespace Serwer.Controllers
         [Route("")]
         public IHttpActionResult Get()
         {
-            var result = Database.Instance.Uzytkowniks;
+            DBDataContext db = new DBDataContext();
+            var result = db.Uzytkowniks;
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_Uzytkownik(x)));
@@ -25,7 +26,8 @@ namespace Serwer.Controllers
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var result = Database.Instance.Uzytkowniks.Where(x => x.id == id);
+            DBDataContext db = new DBDataContext();
+            var result = db.Uzytkowniks.Where(x => x.id == id);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_Uzytkownik(x)));
@@ -33,7 +35,8 @@ namespace Serwer.Controllers
         [Route("login/{login}")]
         public IHttpActionResult Get(string login)
         {
-            var result = Database.Instance.Uzytkowniks.Where(x => x.login == login);
+            DBDataContext db = new DBDataContext();
+            var result = db.Uzytkowniks.Where(x => x.login == login);
             if (result == null)
                 return NotFound();
             return Ok(result.Select(x => new S_Uzytkownik(x)));
@@ -42,10 +45,11 @@ namespace Serwer.Controllers
         [Route("add")]
         public IHttpActionResult Post([FromBody]Uzytkownik value)
         {
+            DBDataContext db = new DBDataContext();
             try
             {
-                Database.Instance.Uzytkowniks.InsertOnSubmit(value);
-                Database.Instance.SubmitChanges();
+                db.Uzytkowniks.InsertOnSubmit(value);
+                db.SubmitChanges();
                 return Ok();
             }
             catch
@@ -58,7 +62,8 @@ namespace Serwer.Controllers
         [Route("start")]
         public IHttpActionResult AuthenticateUser([FromBody]Uzytkownik value)
         {
-            if (Database.Instance.Uzytkowniks.Where(x => x.login == value.login && x.skrot_hasla == value.skrot_hasla).Count() > 0)
+            DBDataContext db = new DBDataContext();
+            if (db.Uzytkowniks.Where(x => x.login == value.login && x.skrot_hasla == value.skrot_hasla).Count() > 0)
                 return Ok();
             else return Unauthorized();
         }
@@ -66,12 +71,13 @@ namespace Serwer.Controllers
         // PUT: api/Uzytkownik/5
         public IHttpActionResult Put(string login, [FromBody]Uzytkownik value)
         {
-            var result = Database.Instance.Uzytkowniks.Where(x => x.login == login).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.Uzytkowniks.Where(x => x.login == login).FirstOrDefault();
             if (result != null)
             {
                 //result.Name = value.Name;
                 //result.HowManyLegs = value.HowManyLegs;
-                Database.Instance.SubmitChanges();
+                db.SubmitChanges();
                 return Ok();
             }
             return Ok("Nastąpił jakiś błąd");
@@ -82,11 +88,12 @@ namespace Serwer.Controllers
         // DELETE: api/Uzytkownik/5
         public IHttpActionResult Delete(string login)
         {
-            var result = Database.Instance.Uzytkowniks.Where(x => x.login == login).FirstOrDefault();
+            DBDataContext db = new DBDataContext();
+            var result = db.Uzytkowniks.Where(x => x.login == login).FirstOrDefault();
             if (result != null)
             {
-                Database.Instance.Uzytkowniks.DeleteOnSubmit(result);
-                Database.Instance.SubmitChanges();
+                db.Uzytkowniks.DeleteOnSubmit(result);
+                db.SubmitChanges();
                 return Ok();
             }
             return NotFound();
