@@ -58,11 +58,18 @@ namespace Serwer.Controllers
         public object GetProposed(string login)
         {
             DBDataContext db = new DBDataContext();
-            var result = db.udzial_w_wydarzenius
-                .Where(x => x.login_uczestnika != login)
-                .Select(x => x.Wydarzenie)
-                .Where(x=>x.login_organizatora != login)
-                .ToList();
+            List<Wydarzenie> allEvents = db.udzial_w_wydarzenius.Select(x => x.Wydarzenie).ToList();
+            List<int> myEventsIds = db.udzial_w_wydarzenius.Where(x => x.login_uczestnika == login).Select(x => x.Wydarzenie).Select(x=>x.id).ToList();
+            List<Wydarzenie> result = new List<Wydarzenie>();
+            
+           foreach(Wydarzenie w in allEvents)
+            {
+                if (!myEventsIds.Contains(w.id))
+                {
+                    result.Add(w);
+                }
+            }
+           
 
             if (result == null)
                 return NotFound();

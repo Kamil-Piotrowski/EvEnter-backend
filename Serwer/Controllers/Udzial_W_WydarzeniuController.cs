@@ -8,8 +8,10 @@ using System.Web.Http;
 
 namespace Serwer.Controllers
 {
+    [RoutePrefix("api/udzial")]
     public class Udzial_W_WydarzeniuController : ApiController
     {
+        [Route("")]
         public IHttpActionResult Get()
         {
             DBDataContext db = new DBDataContext();
@@ -19,7 +21,7 @@ namespace Serwer.Controllers
             return Ok(result.Select(x => new S_udzial_w_wydarzeniu(x)));
         }
 
-        // GET: api/User/5
+        [Route("{id:int}")]
         public object Get(int id)
         {
             DBDataContext db = new DBDataContext();
@@ -29,7 +31,7 @@ namespace Serwer.Controllers
             return Ok(result.Select(x => new S_udzial_w_wydarzeniu(x)));
         }
 
-        // POST: api/User
+        [Route("add")]
         public IHttpActionResult Post([FromBody]udzial_w_wydarzeniu value)
         {
             DBDataContext db = new DBDataContext();
@@ -64,11 +66,20 @@ namespace Serwer.Controllers
 
         }
 
-        // DELETE: api/User/5
-        public IHttpActionResult Delete(int id)
+        [Route("delete/{EventIdDashLogin}")]
+        public IHttpActionResult Delete(string EventIdDashLogin)
         {
+
+
+            int dashIndex = EventIdDashLogin.IndexOf("-");
+            int EventId = int.Parse(EventIdDashLogin.Substring(0, dashIndex));
+            string Login = EventIdDashLogin.Substring(dashIndex + 1, EventIdDashLogin.Length - 1 - EventId.ToString().Length);
+
+
+
+
             DBDataContext db = new DBDataContext();
-            var result = db.udzial_w_wydarzenius.Where(x => x.id_wydarzenia == id).FirstOrDefault();
+            var result = db.udzial_w_wydarzenius.Where(x => x.id_wydarzenia == EventId && x.login_uczestnika == Login).FirstOrDefault();
             if (result != null)
             {
                 db.udzial_w_wydarzenius.DeleteOnSubmit(result);
