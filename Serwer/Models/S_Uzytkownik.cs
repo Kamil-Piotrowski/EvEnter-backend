@@ -11,7 +11,7 @@ namespace Serwer.Models
         public string imie { get; set; }
         public string nazwisko { get; set; }
         public int punkty { get; set; }
-        public DateTime? data_urodzenia { get; set; }
+        public string data_urodzenia { get; set; }
         public string nr_telefonu { get; set; }
         public bool? zweryfikowane { get; set; }
         public string skrot_hasla { get; set; }
@@ -23,7 +23,12 @@ namespace Serwer.Models
             this.imie = u.imie;
             this.nazwisko = u.nazwisko;
             this.punkty = u.punkty;
-            this.data_urodzenia = u.data_urodzenia;
+            if(u.data_urodzenia != null)
+            {
+                DateTime d = (DateTime)u.data_urodzenia;
+                this.data_urodzenia = d.ToString("MM.dd.yyyy");
+            }
+            
             this.nr_telefonu = u.nr_telefonu;
             this.zweryfikowane = u.zweryfikowane;
             this.skrot_hasla = u.skrot_hasla;
@@ -39,7 +44,7 @@ namespace Serwer.Models
                 imie = value.imie,
                 nazwisko = value.nazwisko,
                 punkty = value.punkty,
-                data_urodzenia = value.data_urodzenia,
+                data_urodzenia = DateTime.Parse(value.data_urodzenia),
                 nr_telefonu = value.nr_telefonu,
                 zweryfikowane = value.zweryfikowane,
                 skrot_hasla = value.skrot_hasla,

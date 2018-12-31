@@ -68,15 +68,20 @@ namespace Serwer.Controllers
             else return Unauthorized();
         }
 
-        // PUT: api/Uzytkownik/5
+        [Route("update/login/{login}")]
         public IHttpActionResult Put(string login, [FromBody]Uzytkownik value)
         {
             DBDataContext db = new DBDataContext();
             var result = db.Uzytkowniks.Where(x => x.login == login).FirstOrDefault();
             if (result != null)
             {
-                //result.Name = value.Name;
-                //result.HowManyLegs = value.HowManyLegs;
+                
+                result.imie = value.imie;
+                result.nazwisko = value.nazwisko;
+                
+                result.data_urodzenia = value.data_urodzenia;
+                result.nr_telefonu = value.nr_telefonu;
+                
                 db.SubmitChanges();
                 return Ok();
             }
