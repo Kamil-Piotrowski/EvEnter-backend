@@ -52,8 +52,9 @@ namespace Serwer.Controllers
                 db.SubmitChanges();
                 return Ok();
             }
-            catch
+            catch (Exception E)
             {
+                E.ToString();
                 return Unauthorized();
             }
 

@@ -33,15 +33,15 @@ namespace Serwer
     partial void Insertczlonkowstwo_w_grupie(czlonkowstwo_w_grupie instance);
     partial void Updateczlonkowstwo_w_grupie(czlonkowstwo_w_grupie instance);
     partial void Deleteczlonkowstwo_w_grupie(czlonkowstwo_w_grupie instance);
+    partial void Insertznajomosc(znajomosc instance);
+    partial void Updateznajomosc(znajomosc instance);
+    partial void Deleteznajomosc(znajomosc instance);
     partial void InsertGrupa(Grupa instance);
     partial void UpdateGrupa(Grupa instance);
     partial void DeleteGrupa(Grupa instance);
     partial void Insertocena_wspoluczestnika(ocena_wspoluczestnika instance);
     partial void Updateocena_wspoluczestnika(ocena_wspoluczestnika instance);
     partial void Deleteocena_wspoluczestnika(ocena_wspoluczestnika instance);
-    partial void Insertznajomosc(znajomosc instance);
-    partial void Updateznajomosc(znajomosc instance);
-    partial void Deleteznajomosc(znajomosc instance);
     partial void Insertocena_wydarzenia(ocena_wydarzenia instance);
     partial void Updateocena_wydarzenia(ocena_wydarzenia instance);
     partial void Deleteocena_wydarzenia(ocena_wydarzenia instance);
@@ -57,15 +57,15 @@ namespace Serwer
     partial void Insertudzial_w_wydarzeniu(udzial_w_wydarzeniu instance);
     partial void Updateudzial_w_wydarzeniu(udzial_w_wydarzeniu instance);
     partial void Deleteudzial_w_wydarzeniu(udzial_w_wydarzeniu instance);
-    partial void Insertwiadomosc_grupowa(wiadomosc_grupowa instance);
-    partial void Updatewiadomosc_grupowa(wiadomosc_grupowa instance);
-    partial void Deletewiadomosc_grupowa(wiadomosc_grupowa instance);
     partial void InsertUzytkownik(Uzytkownik instance);
     partial void UpdateUzytkownik(Uzytkownik instance);
     partial void DeleteUzytkownik(Uzytkownik instance);
     partial void Insertwiadomosc(wiadomosc instance);
     partial void Updatewiadomosc(wiadomosc instance);
     partial void Deletewiadomosc(wiadomosc instance);
+    partial void Insertwiadomosc_grupowa(wiadomosc_grupowa instance);
+    partial void Updatewiadomosc_grupowa(wiadomosc_grupowa instance);
+    partial void Deletewiadomosc_grupowa(wiadomosc_grupowa instance);
     partial void InsertWydarzenie(Wydarzenie instance);
     partial void UpdateWydarzenie(Wydarzenie instance);
     partial void DeleteWydarzenie(Wydarzenie instance);
@@ -109,6 +109,14 @@ namespace Serwer
 			}
 		}
 		
+		public System.Data.Linq.Table<znajomosc> znajomoscs
+		{
+			get
+			{
+				return this.GetTable<znajomosc>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Grupa> Grupas
 		{
 			get
@@ -122,14 +130,6 @@ namespace Serwer
 			get
 			{
 				return this.GetTable<ocena_wspoluczestnika>();
-			}
-		}
-		
-		public System.Data.Linq.Table<znajomosc> znajomoscs
-		{
-			get
-			{
-				return this.GetTable<znajomosc>();
 			}
 		}
 		
@@ -173,14 +173,6 @@ namespace Serwer
 			}
 		}
 		
-		public System.Data.Linq.Table<wiadomosc_grupowa> wiadomosc_grupowas
-		{
-			get
-			{
-				return this.GetTable<wiadomosc_grupowa>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Uzytkownik> Uzytkowniks
 		{
 			get
@@ -194,6 +186,14 @@ namespace Serwer
 			get
 			{
 				return this.GetTable<wiadomosc>();
+			}
+		}
+		
+		public System.Data.Linq.Table<wiadomosc_grupowa> wiadomosc_grupowas
+		{
+			get
+			{
+				return this.GetTable<wiadomosc_grupowa>();
 			}
 		}
 		
@@ -265,7 +265,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_czlonka", DbType="Char(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_czlonka", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string login_czlonka
 		{
 			get
@@ -398,6 +398,198 @@ namespace Serwer
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.znajomosc")]
+	public partial class znajomosc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _login_zapraszajacego;
+		
+		private string _login_zaproszonego;
+		
+		private System.Nullable<System.DateTime> _data_poczatku;
+		
+		private EntityRef<Uzytkownik> _Uzytkownik;
+		
+		private EntityRef<Uzytkownik> _Uzytkownik1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onlogin_zapraszajacegoChanging(string value);
+    partial void Onlogin_zapraszajacegoChanged();
+    partial void Onlogin_zaproszonegoChanging(string value);
+    partial void Onlogin_zaproszonegoChanged();
+    partial void Ondata_poczatkuChanging(System.Nullable<System.DateTime> value);
+    partial void Ondata_poczatkuChanged();
+    #endregion
+		
+		public znajomosc()
+		{
+			this._Uzytkownik = default(EntityRef<Uzytkownik>);
+			this._Uzytkownik1 = default(EntityRef<Uzytkownik>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_zapraszajacego", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string login_zapraszajacego
+		{
+			get
+			{
+				return this._login_zapraszajacego;
+			}
+			set
+			{
+				if ((this._login_zapraszajacego != value))
+				{
+					if (this._Uzytkownik1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onlogin_zapraszajacegoChanging(value);
+					this.SendPropertyChanging();
+					this._login_zapraszajacego = value;
+					this.SendPropertyChanged("login_zapraszajacego");
+					this.Onlogin_zapraszajacegoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_zaproszonego", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string login_zaproszonego
+		{
+			get
+			{
+				return this._login_zaproszonego;
+			}
+			set
+			{
+				if ((this._login_zaproszonego != value))
+				{
+					if (this._Uzytkownik.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onlogin_zaproszonegoChanging(value);
+					this.SendPropertyChanging();
+					this._login_zaproszonego = value;
+					this.SendPropertyChanged("login_zaproszonego");
+					this.Onlogin_zaproszonegoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_poczatku", DbType="Date")]
+		public System.Nullable<System.DateTime> data_poczatku
+		{
+			get
+			{
+				return this._data_poczatku;
+			}
+			set
+			{
+				if ((this._data_poczatku != value))
+				{
+					this.Ondata_poczatkuChanging(value);
+					this.SendPropertyChanging();
+					this._data_poczatku = value;
+					this.SendPropertyChanged("data_poczatku");
+					this.Ondata_poczatkuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc", Storage="_Uzytkownik", ThisKey="login_zaproszonego", OtherKey="login", IsForeignKey=true)]
+		public Uzytkownik Uzytkownik
+		{
+			get
+			{
+				return this._Uzytkownik.Entity;
+			}
+			set
+			{
+				Uzytkownik previousValue = this._Uzytkownik.Entity;
+				if (((previousValue != value) 
+							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Uzytkownik.Entity = null;
+						previousValue.znajomoscs.Remove(this);
+					}
+					this._Uzytkownik.Entity = value;
+					if ((value != null))
+					{
+						value.znajomoscs.Add(this);
+						this._login_zaproszonego = value.login;
+					}
+					else
+					{
+						this._login_zaproszonego = default(string);
+					}
+					this.SendPropertyChanged("Uzytkownik");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc1", Storage="_Uzytkownik1", ThisKey="login_zapraszajacego", OtherKey="login", IsForeignKey=true)]
+		public Uzytkownik Uzytkownik1
+		{
+			get
+			{
+				return this._Uzytkownik1.Entity;
+			}
+			set
+			{
+				Uzytkownik previousValue = this._Uzytkownik1.Entity;
+				if (((previousValue != value) 
+							|| (this._Uzytkownik1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Uzytkownik1.Entity = null;
+						previousValue.znajomoscs1.Remove(this);
+					}
+					this._Uzytkownik1.Entity = value;
+					if ((value != null))
+					{
+						value.znajomoscs1.Add(this);
+						this._login_zapraszajacego = value.login;
+					}
+					else
+					{
+						this._login_zapraszajacego = default(string);
+					}
+					this.SendPropertyChanged("Uzytkownik1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Grupa")]
 	public partial class Grupa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -464,7 +656,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nazwa", DbType="Char(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nazwa", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
 		public string nazwa
 		{
 			get
@@ -484,7 +676,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_opis", DbType="Char(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_opis", DbType="NVarChar(100)")]
 		public string opis
 		{
 			get
@@ -524,7 +716,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logina_admina", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logina_admina", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string logina_admina
 		{
 			get
@@ -723,7 +915,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oceniajacego", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oceniajacego", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_oceniajacego
 		{
 			get
@@ -747,7 +939,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_ocenianego", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_ocenianego", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_ocenianego
 		{
 			get
@@ -958,198 +1150,6 @@ namespace Serwer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.znajomosc")]
-	public partial class znajomosc : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _login_zapraszajacego;
-		
-		private string _login_zaproszonego;
-		
-		private System.Nullable<System.DateTime> _data_poczatku;
-		
-		private EntityRef<Uzytkownik> _Uzytkownik;
-		
-		private EntityRef<Uzytkownik> _Uzytkownik1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onlogin_zapraszajacegoChanging(string value);
-    partial void Onlogin_zapraszajacegoChanged();
-    partial void Onlogin_zaproszonegoChanging(string value);
-    partial void Onlogin_zaproszonegoChanged();
-    partial void Ondata_poczatkuChanging(System.Nullable<System.DateTime> value);
-    partial void Ondata_poczatkuChanged();
-    #endregion
-		
-		public znajomosc()
-		{
-			this._Uzytkownik = default(EntityRef<Uzytkownik>);
-			this._Uzytkownik1 = default(EntityRef<Uzytkownik>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_zapraszajacego", DbType="Char(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string login_zapraszajacego
-		{
-			get
-			{
-				return this._login_zapraszajacego;
-			}
-			set
-			{
-				if ((this._login_zapraszajacego != value))
-				{
-					if (this._Uzytkownik1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onlogin_zapraszajacegoChanging(value);
-					this.SendPropertyChanging();
-					this._login_zapraszajacego = value;
-					this.SendPropertyChanged("login_zapraszajacego");
-					this.Onlogin_zapraszajacegoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_zaproszonego", DbType="Char(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string login_zaproszonego
-		{
-			get
-			{
-				return this._login_zaproszonego;
-			}
-			set
-			{
-				if ((this._login_zaproszonego != value))
-				{
-					if (this._Uzytkownik.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onlogin_zaproszonegoChanging(value);
-					this.SendPropertyChanging();
-					this._login_zaproszonego = value;
-					this.SendPropertyChanged("login_zaproszonego");
-					this.Onlogin_zaproszonegoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_poczatku", DbType="Date")]
-		public System.Nullable<System.DateTime> data_poczatku
-		{
-			get
-			{
-				return this._data_poczatku;
-			}
-			set
-			{
-				if ((this._data_poczatku != value))
-				{
-					this.Ondata_poczatkuChanging(value);
-					this.SendPropertyChanging();
-					this._data_poczatku = value;
-					this.SendPropertyChanged("data_poczatku");
-					this.Ondata_poczatkuChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc", Storage="_Uzytkownik", ThisKey="login_zaproszonego", OtherKey="login", IsForeignKey=true)]
-		public Uzytkownik Uzytkownik
-		{
-			get
-			{
-				return this._Uzytkownik.Entity;
-			}
-			set
-			{
-				Uzytkownik previousValue = this._Uzytkownik.Entity;
-				if (((previousValue != value) 
-							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Uzytkownik.Entity = null;
-						previousValue.znajomoscs.Remove(this);
-					}
-					this._Uzytkownik.Entity = value;
-					if ((value != null))
-					{
-						value.znajomoscs.Add(this);
-						this._login_zaproszonego = value.login;
-					}
-					else
-					{
-						this._login_zaproszonego = default(string);
-					}
-					this.SendPropertyChanged("Uzytkownik");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc1", Storage="_Uzytkownik1", ThisKey="login_zapraszajacego", OtherKey="login", IsForeignKey=true)]
-		public Uzytkownik Uzytkownik1
-		{
-			get
-			{
-				return this._Uzytkownik1.Entity;
-			}
-			set
-			{
-				Uzytkownik previousValue = this._Uzytkownik1.Entity;
-				if (((previousValue != value) 
-							|| (this._Uzytkownik1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Uzytkownik1.Entity = null;
-						previousValue.znajomoscs1.Remove(this);
-					}
-					this._Uzytkownik1.Entity = value;
-					if ((value != null))
-					{
-						value.znajomoscs1.Add(this);
-						this._login_zapraszajacego = value.login;
-					}
-					else
-					{
-						this._login_zapraszajacego = default(string);
-					}
-					this.SendPropertyChanged("Uzytkownik1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ocena_wydarzenia")]
 	public partial class ocena_wydarzenia : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1241,7 +1241,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oceniajacego", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oceniajacego", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_oceniajacego
 		{
 			get
@@ -1285,7 +1285,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_komentarz", DbType="Char(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_komentarz", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string komentarz
 		{
 			get
@@ -1426,9 +1426,9 @@ namespace Serwer
 		
 		private System.Nullable<System.DateTime> _data_przeczytania;
 		
-		private EntityRef<wiadomosc_grupowa> _wiadomosc_grupowa;
-		
 		private EntityRef<Uzytkownik> _Uzytkownik;
+		
+		private EntityRef<wiadomosc_grupowa> _wiadomosc_grupowa;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1444,8 +1444,8 @@ namespace Serwer
 		
 		public przeczytanie_wiadgrup()
 		{
-			this._wiadomosc_grupowa = default(EntityRef<wiadomosc_grupowa>);
 			this._Uzytkownik = default(EntityRef<Uzytkownik>);
+			this._wiadomosc_grupowa = default(EntityRef<wiadomosc_grupowa>);
 			OnCreated();
 		}
 		
@@ -1473,7 +1473,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_odbiorcy", DbType="Char(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_odbiorcy", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string login_odbiorcy
 		{
 			get
@@ -1517,40 +1517,6 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="wiadomosc_grupowa_przeczytanie_wiadgrup", Storage="_wiadomosc_grupowa", ThisKey="id_wiadomosci_grup", OtherKey="id", IsForeignKey=true)]
-		public wiadomosc_grupowa wiadomosc_grupowa
-		{
-			get
-			{
-				return this._wiadomosc_grupowa.Entity;
-			}
-			set
-			{
-				wiadomosc_grupowa previousValue = this._wiadomosc_grupowa.Entity;
-				if (((previousValue != value) 
-							|| (this._wiadomosc_grupowa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._wiadomosc_grupowa.Entity = null;
-						previousValue.przeczytanie_wiadgrups.Remove(this);
-					}
-					this._wiadomosc_grupowa.Entity = value;
-					if ((value != null))
-					{
-						value.przeczytanie_wiadgrups.Add(this);
-						this._id_wiadomosci_grup = value.id;
-					}
-					else
-					{
-						this._id_wiadomosci_grup = default(int);
-					}
-					this.SendPropertyChanged("wiadomosc_grupowa");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_przeczytanie_wiadgrup", Storage="_Uzytkownik", ThisKey="login_odbiorcy", OtherKey="login", IsForeignKey=true)]
 		public Uzytkownik Uzytkownik
 		{
@@ -1581,6 +1547,40 @@ namespace Serwer
 						this._login_odbiorcy = default(string);
 					}
 					this.SendPropertyChanged("Uzytkownik");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="wiadomosc_grupowa_przeczytanie_wiadgrup", Storage="_wiadomosc_grupowa", ThisKey="id_wiadomosci_grup", OtherKey="id", IsForeignKey=true)]
+		public wiadomosc_grupowa wiadomosc_grupowa
+		{
+			get
+			{
+				return this._wiadomosc_grupowa.Entity;
+			}
+			set
+			{
+				wiadomosc_grupowa previousValue = this._wiadomosc_grupowa.Entity;
+				if (((previousValue != value) 
+							|| (this._wiadomosc_grupowa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._wiadomosc_grupowa.Entity = null;
+						previousValue.przeczytanie_wiadgrups.Remove(this);
+					}
+					this._wiadomosc_grupowa.Entity = value;
+					if ((value != null))
+					{
+						value.przeczytanie_wiadgrups.Add(this);
+						this._id_wiadomosci_grup = value.id;
+					}
+					else
+					{
+						this._id_wiadomosci_grup = default(int);
+					}
+					this.SendPropertyChanged("wiadomosc_grupowa");
 				}
 			}
 		}
@@ -1662,7 +1662,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_uzytkownika", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_uzytkownika", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_uzytkownika
 		{
 			get
@@ -1852,7 +1852,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_powoda", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_powoda", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_powoda
 		{
 			get
@@ -1876,7 +1876,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oskarzonego", DbType="Char(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_oskarzonego", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_oskarzonego
 		{
 			get
@@ -1940,7 +1940,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc_skargi", DbType="Char(512) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc_skargi", DbType="NVarChar(512) NOT NULL", CanBeNull=false)]
 		public string tresc_skargi
 		{
 			get
@@ -1960,7 +1960,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc_odpowiedzi", DbType="Char(512)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc_odpowiedzi", DbType="NVarChar(512)")]
 		public string tresc_odpowiedzi
 		{
 			get
@@ -2104,7 +2104,7 @@ namespace Serwer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_uczestnika", DbType="Char(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_uczestnika", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string login_uczestnika
 		{
 			get
@@ -2261,274 +2261,6 @@ namespace Serwer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.wiadomosc_grupowa")]
-	public partial class wiadomosc_grupowa : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private int _id_grupy;
-		
-		private string _login_nadawcy;
-		
-		private System.DateTime _data_wyslania;
-		
-		private string _tresc;
-		
-		private EntitySet<przeczytanie_wiadgrup> _przeczytanie_wiadgrups;
-		
-		private EntityRef<Grupa> _Grupa;
-		
-		private EntityRef<Uzytkownik> _Uzytkownik;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onid_grupyChanging(int value);
-    partial void Onid_grupyChanged();
-    partial void Onlogin_nadawcyChanging(string value);
-    partial void Onlogin_nadawcyChanged();
-    partial void Ondata_wyslaniaChanging(System.DateTime value);
-    partial void Ondata_wyslaniaChanged();
-    partial void OntrescChanging(string value);
-    partial void OntrescChanged();
-    #endregion
-		
-		public wiadomosc_grupowa()
-		{
-			this._przeczytanie_wiadgrups = new EntitySet<przeczytanie_wiadgrup>(new Action<przeczytanie_wiadgrup>(this.attach_przeczytanie_wiadgrups), new Action<przeczytanie_wiadgrup>(this.detach_przeczytanie_wiadgrups));
-			this._Grupa = default(EntityRef<Grupa>);
-			this._Uzytkownik = default(EntityRef<Uzytkownik>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_grupy", DbType="Int NOT NULL")]
-		public int id_grupy
-		{
-			get
-			{
-				return this._id_grupy;
-			}
-			set
-			{
-				if ((this._id_grupy != value))
-				{
-					if (this._Grupa.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_grupyChanging(value);
-					this.SendPropertyChanging();
-					this._id_grupy = value;
-					this.SendPropertyChanged("id_grupy");
-					this.Onid_grupyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_nadawcy", DbType="Char(15) NOT NULL", CanBeNull=false)]
-		public string login_nadawcy
-		{
-			get
-			{
-				return this._login_nadawcy;
-			}
-			set
-			{
-				if ((this._login_nadawcy != value))
-				{
-					if (this._Uzytkownik.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onlogin_nadawcyChanging(value);
-					this.SendPropertyChanging();
-					this._login_nadawcy = value;
-					this.SendPropertyChanged("login_nadawcy");
-					this.Onlogin_nadawcyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_wyslania", DbType="Date NOT NULL")]
-		public System.DateTime data_wyslania
-		{
-			get
-			{
-				return this._data_wyslania;
-			}
-			set
-			{
-				if ((this._data_wyslania != value))
-				{
-					this.Ondata_wyslaniaChanging(value);
-					this.SendPropertyChanging();
-					this._data_wyslania = value;
-					this.SendPropertyChanged("data_wyslania");
-					this.Ondata_wyslaniaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc", DbType="Char(150) NOT NULL", CanBeNull=false)]
-		public string tresc
-		{
-			get
-			{
-				return this._tresc;
-			}
-			set
-			{
-				if ((this._tresc != value))
-				{
-					this.OntrescChanging(value);
-					this.SendPropertyChanging();
-					this._tresc = value;
-					this.SendPropertyChanged("tresc");
-					this.OntrescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="wiadomosc_grupowa_przeczytanie_wiadgrup", Storage="_przeczytanie_wiadgrups", ThisKey="id", OtherKey="id_wiadomosci_grup")]
-		public EntitySet<przeczytanie_wiadgrup> przeczytanie_wiadgrups
-		{
-			get
-			{
-				return this._przeczytanie_wiadgrups;
-			}
-			set
-			{
-				this._przeczytanie_wiadgrups.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Grupa_wiadomosc_grupowa", Storage="_Grupa", ThisKey="id_grupy", OtherKey="id", IsForeignKey=true)]
-		public Grupa Grupa
-		{
-			get
-			{
-				return this._Grupa.Entity;
-			}
-			set
-			{
-				Grupa previousValue = this._Grupa.Entity;
-				if (((previousValue != value) 
-							|| (this._Grupa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Grupa.Entity = null;
-						previousValue.wiadomosc_grupowas.Remove(this);
-					}
-					this._Grupa.Entity = value;
-					if ((value != null))
-					{
-						value.wiadomosc_grupowas.Add(this);
-						this._id_grupy = value.id;
-					}
-					else
-					{
-						this._id_grupy = default(int);
-					}
-					this.SendPropertyChanged("Grupa");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_wiadomosc_grupowa", Storage="_Uzytkownik", ThisKey="login_nadawcy", OtherKey="login", IsForeignKey=true)]
-		public Uzytkownik Uzytkownik
-		{
-			get
-			{
-				return this._Uzytkownik.Entity;
-			}
-			set
-			{
-				Uzytkownik previousValue = this._Uzytkownik.Entity;
-				if (((previousValue != value) 
-							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Uzytkownik.Entity = null;
-						previousValue.wiadomosc_grupowas.Remove(this);
-					}
-					this._Uzytkownik.Entity = value;
-					if ((value != null))
-					{
-						value.wiadomosc_grupowas.Add(this);
-						this._login_nadawcy = value.login;
-					}
-					else
-					{
-						this._login_nadawcy = default(string);
-					}
-					this.SendPropertyChanged("Uzytkownik");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_przeczytanie_wiadgrups(przeczytanie_wiadgrup entity)
-		{
-			this.SendPropertyChanging();
-			entity.wiadomosc_grupowa = this;
-		}
-		
-		private void detach_przeczytanie_wiadgrups(przeczytanie_wiadgrup entity)
-		{
-			this.SendPropertyChanging();
-			entity.wiadomosc_grupowa = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Uzytkownik")]
 	public partial class Uzytkownik : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2557,15 +2289,15 @@ namespace Serwer
 		
 		private EntitySet<czlonkowstwo_w_grupie> _czlonkowstwo_w_grupies;
 		
+		private EntitySet<znajomosc> _znajomoscs;
+		
+		private EntitySet<znajomosc> _znajomoscs1;
+		
 		private EntitySet<Grupa> _Grupas;
 		
 		private EntitySet<ocena_wspoluczestnika> _ocena_wspoluczestnikas;
 		
 		private EntitySet<ocena_wspoluczestnika> _ocena_wspoluczestnikas1;
-		
-		private EntitySet<znajomosc> _znajomoscs;
-		
-		private EntitySet<znajomosc> _znajomoscs1;
 		
 		private EntitySet<ocena_wydarzenia> _ocena_wydarzenias;
 		
@@ -2579,11 +2311,11 @@ namespace Serwer
 		
 		private EntitySet<udzial_w_wydarzeniu> _udzial_w_wydarzenius;
 		
-		private EntitySet<wiadomosc_grupowa> _wiadomosc_grupowas;
-		
 		private EntitySet<wiadomosc> _wiadomoscs;
 		
 		private EntitySet<wiadomosc> _wiadomoscs1;
+		
+		private EntitySet<wiadomosc_grupowa> _wiadomosc_grupowas;
 		
 		private EntitySet<Wydarzenie> _Wydarzenies;
 		
@@ -2616,25 +2348,25 @@ namespace Serwer
 		public Uzytkownik()
 		{
 			this._czlonkowstwo_w_grupies = new EntitySet<czlonkowstwo_w_grupie>(new Action<czlonkowstwo_w_grupie>(this.attach_czlonkowstwo_w_grupies), new Action<czlonkowstwo_w_grupie>(this.detach_czlonkowstwo_w_grupies));
+			this._znajomoscs = new EntitySet<znajomosc>(new Action<znajomosc>(this.attach_znajomoscs), new Action<znajomosc>(this.detach_znajomoscs));
+			this._znajomoscs1 = new EntitySet<znajomosc>(new Action<znajomosc>(this.attach_znajomoscs1), new Action<znajomosc>(this.detach_znajomoscs1));
 			this._Grupas = new EntitySet<Grupa>(new Action<Grupa>(this.attach_Grupas), new Action<Grupa>(this.detach_Grupas));
 			this._ocena_wspoluczestnikas = new EntitySet<ocena_wspoluczestnika>(new Action<ocena_wspoluczestnika>(this.attach_ocena_wspoluczestnikas), new Action<ocena_wspoluczestnika>(this.detach_ocena_wspoluczestnikas));
 			this._ocena_wspoluczestnikas1 = new EntitySet<ocena_wspoluczestnika>(new Action<ocena_wspoluczestnika>(this.attach_ocena_wspoluczestnikas1), new Action<ocena_wspoluczestnika>(this.detach_ocena_wspoluczestnikas1));
-			this._znajomoscs = new EntitySet<znajomosc>(new Action<znajomosc>(this.attach_znajomoscs), new Action<znajomosc>(this.detach_znajomoscs));
-			this._znajomoscs1 = new EntitySet<znajomosc>(new Action<znajomosc>(this.attach_znajomoscs1), new Action<znajomosc>(this.detach_znajomoscs1));
 			this._ocena_wydarzenias = new EntitySet<ocena_wydarzenia>(new Action<ocena_wydarzenia>(this.attach_ocena_wydarzenias), new Action<ocena_wydarzenia>(this.detach_ocena_wydarzenias));
 			this._przeczytanie_wiadgrups = new EntitySet<przeczytanie_wiadgrup>(new Action<przeczytanie_wiadgrup>(this.attach_przeczytanie_wiadgrups), new Action<przeczytanie_wiadgrup>(this.detach_przeczytanie_wiadgrups));
 			this._Sesjas = new EntitySet<Sesja>(new Action<Sesja>(this.attach_Sesjas), new Action<Sesja>(this.detach_Sesjas));
 			this._skargas = new EntitySet<skarga>(new Action<skarga>(this.attach_skargas), new Action<skarga>(this.detach_skargas));
 			this._skargas1 = new EntitySet<skarga>(new Action<skarga>(this.attach_skargas1), new Action<skarga>(this.detach_skargas1));
 			this._udzial_w_wydarzenius = new EntitySet<udzial_w_wydarzeniu>(new Action<udzial_w_wydarzeniu>(this.attach_udzial_w_wydarzenius), new Action<udzial_w_wydarzeniu>(this.detach_udzial_w_wydarzenius));
-			this._wiadomosc_grupowas = new EntitySet<wiadomosc_grupowa>(new Action<wiadomosc_grupowa>(this.attach_wiadomosc_grupowas), new Action<wiadomosc_grupowa>(this.detach_wiadomosc_grupowas));
 			this._wiadomoscs = new EntitySet<wiadomosc>(new Action<wiadomosc>(this.attach_wiadomoscs), new Action<wiadomosc>(this.detach_wiadomoscs));
 			this._wiadomoscs1 = new EntitySet<wiadomosc>(new Action<wiadomosc>(this.attach_wiadomoscs1), new Action<wiadomosc>(this.detach_wiadomoscs1));
+			this._wiadomosc_grupowas = new EntitySet<wiadomosc_grupowa>(new Action<wiadomosc_grupowa>(this.attach_wiadomosc_grupowas), new Action<wiadomosc_grupowa>(this.detach_wiadomosc_grupowas));
 			this._Wydarzenies = new EntitySet<Wydarzenie>(new Action<Wydarzenie>(this.attach_Wydarzenies), new Action<Wydarzenie>(this.detach_Wydarzenies));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string login
 		{
 			get
@@ -2847,6 +2579,32 @@ namespace Serwer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc", Storage="_znajomoscs", ThisKey="login", OtherKey="login_zaproszonego")]
+		public EntitySet<znajomosc> znajomoscs
+		{
+			get
+			{
+				return this._znajomoscs;
+			}
+			set
+			{
+				this._znajomoscs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc1", Storage="_znajomoscs1", ThisKey="login", OtherKey="login_zapraszajacego")]
+		public EntitySet<znajomosc> znajomoscs1
+		{
+			get
+			{
+				return this._znajomoscs1;
+			}
+			set
+			{
+				this._znajomoscs1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_Grupa", Storage="_Grupas", ThisKey="login", OtherKey="logina_admina")]
 		public EntitySet<Grupa> Grupas
 		{
@@ -2883,32 +2641,6 @@ namespace Serwer
 			set
 			{
 				this._ocena_wspoluczestnikas1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc", Storage="_znajomoscs", ThisKey="login", OtherKey="login_zaproszonego")]
-		public EntitySet<znajomosc> znajomoscs
-		{
-			get
-			{
-				return this._znajomoscs;
-			}
-			set
-			{
-				this._znajomoscs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_znajomosc1", Storage="_znajomoscs1", ThisKey="login", OtherKey="login_zapraszajacego")]
-		public EntitySet<znajomosc> znajomoscs1
-		{
-			get
-			{
-				return this._znajomoscs1;
-			}
-			set
-			{
-				this._znajomoscs1.Assign(value);
 			}
 		}
 		
@@ -2990,19 +2722,6 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_wiadomosc_grupowa", Storage="_wiadomosc_grupowas", ThisKey="login", OtherKey="login_nadawcy")]
-		public EntitySet<wiadomosc_grupowa> wiadomosc_grupowas
-		{
-			get
-			{
-				return this._wiadomosc_grupowas;
-			}
-			set
-			{
-				this._wiadomosc_grupowas.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_wiadomosc", Storage="_wiadomoscs", ThisKey="login", OtherKey="login_nadawcy")]
 		public EntitySet<wiadomosc> wiadomoscs
 		{
@@ -3026,6 +2745,19 @@ namespace Serwer
 			set
 			{
 				this._wiadomoscs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_wiadomosc_grupowa", Storage="_wiadomosc_grupowas", ThisKey="login", OtherKey="login_nadawcy")]
+		public EntitySet<wiadomosc_grupowa> wiadomosc_grupowas
+		{
+			get
+			{
+				return this._wiadomosc_grupowas;
+			}
+			set
+			{
+				this._wiadomosc_grupowas.Assign(value);
 			}
 		}
 		
@@ -3074,6 +2806,30 @@ namespace Serwer
 			entity.Uzytkownik = null;
 		}
 		
+		private void attach_znajomoscs(znajomosc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik = this;
+		}
+		
+		private void detach_znajomoscs(znajomosc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik = null;
+		}
+		
+		private void attach_znajomoscs1(znajomosc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik1 = this;
+		}
+		
+		private void detach_znajomoscs1(znajomosc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik1 = null;
+		}
+		
 		private void attach_Grupas(Grupa entity)
 		{
 			this.SendPropertyChanging();
@@ -3105,30 +2861,6 @@ namespace Serwer
 		}
 		
 		private void detach_ocena_wspoluczestnikas1(ocena_wspoluczestnika entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik1 = null;
-		}
-		
-		private void attach_znajomoscs(znajomosc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = this;
-		}
-		
-		private void detach_znajomoscs(znajomosc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = null;
-		}
-		
-		private void attach_znajomoscs1(znajomosc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik1 = this;
-		}
-		
-		private void detach_znajomoscs1(znajomosc entity)
 		{
 			this.SendPropertyChanging();
 			entity.Uzytkownik1 = null;
@@ -3206,18 +2938,6 @@ namespace Serwer
 			entity.Uzytkownik = null;
 		}
 		
-		private void attach_wiadomosc_grupowas(wiadomosc_grupowa entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = this;
-		}
-		
-		private void detach_wiadomosc_grupowas(wiadomosc_grupowa entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = null;
-		}
-		
 		private void attach_wiadomoscs(wiadomosc entity)
 		{
 			this.SendPropertyChanging();
@@ -3240,6 +2960,18 @@ namespace Serwer
 		{
 			this.SendPropertyChanging();
 			entity.Uzytkownik1 = null;
+		}
+		
+		private void attach_wiadomosc_grupowas(wiadomosc_grupowa entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik = this;
+		}
+		
+		private void detach_wiadomosc_grupowas(wiadomosc_grupowa entity)
+		{
+			this.SendPropertyChanging();
+			entity.Uzytkownik = null;
 		}
 		
 		private void attach_Wydarzenies(Wydarzenie entity)
@@ -3342,7 +3074,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_nadawcy", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_nadawcy", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_nadawcy
 		{
 			get
@@ -3366,7 +3098,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_odbiorcy", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_odbiorcy", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_odbiorcy
 		{
 			get
@@ -3519,6 +3251,274 @@ namespace Serwer
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.wiadomosc_grupowa")]
+	public partial class wiadomosc_grupowa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _id_grupy;
+		
+		private string _login_nadawcy;
+		
+		private System.DateTime _data_wyslania;
+		
+		private string _tresc;
+		
+		private EntitySet<przeczytanie_wiadgrup> _przeczytanie_wiadgrups;
+		
+		private EntityRef<Grupa> _Grupa;
+		
+		private EntityRef<Uzytkownik> _Uzytkownik;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onid_grupyChanging(int value);
+    partial void Onid_grupyChanged();
+    partial void Onlogin_nadawcyChanging(string value);
+    partial void Onlogin_nadawcyChanged();
+    partial void Ondata_wyslaniaChanging(System.DateTime value);
+    partial void Ondata_wyslaniaChanged();
+    partial void OntrescChanging(string value);
+    partial void OntrescChanged();
+    #endregion
+		
+		public wiadomosc_grupowa()
+		{
+			this._przeczytanie_wiadgrups = new EntitySet<przeczytanie_wiadgrup>(new Action<przeczytanie_wiadgrup>(this.attach_przeczytanie_wiadgrups), new Action<przeczytanie_wiadgrup>(this.detach_przeczytanie_wiadgrups));
+			this._Grupa = default(EntityRef<Grupa>);
+			this._Uzytkownik = default(EntityRef<Uzytkownik>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_grupy", DbType="Int NOT NULL")]
+		public int id_grupy
+		{
+			get
+			{
+				return this._id_grupy;
+			}
+			set
+			{
+				if ((this._id_grupy != value))
+				{
+					if (this._Grupa.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_grupyChanging(value);
+					this.SendPropertyChanging();
+					this._id_grupy = value;
+					this.SendPropertyChanged("id_grupy");
+					this.Onid_grupyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_nadawcy", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string login_nadawcy
+		{
+			get
+			{
+				return this._login_nadawcy;
+			}
+			set
+			{
+				if ((this._login_nadawcy != value))
+				{
+					if (this._Uzytkownik.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onlogin_nadawcyChanging(value);
+					this.SendPropertyChanging();
+					this._login_nadawcy = value;
+					this.SendPropertyChanged("login_nadawcy");
+					this.Onlogin_nadawcyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_wyslania", DbType="Date NOT NULL")]
+		public System.DateTime data_wyslania
+		{
+			get
+			{
+				return this._data_wyslania;
+			}
+			set
+			{
+				if ((this._data_wyslania != value))
+				{
+					this.Ondata_wyslaniaChanging(value);
+					this.SendPropertyChanging();
+					this._data_wyslania = value;
+					this.SendPropertyChanged("data_wyslania");
+					this.Ondata_wyslaniaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tresc", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string tresc
+		{
+			get
+			{
+				return this._tresc;
+			}
+			set
+			{
+				if ((this._tresc != value))
+				{
+					this.OntrescChanging(value);
+					this.SendPropertyChanging();
+					this._tresc = value;
+					this.SendPropertyChanged("tresc");
+					this.OntrescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="wiadomosc_grupowa_przeczytanie_wiadgrup", Storage="_przeczytanie_wiadgrups", ThisKey="id", OtherKey="id_wiadomosci_grup")]
+		public EntitySet<przeczytanie_wiadgrup> przeczytanie_wiadgrups
+		{
+			get
+			{
+				return this._przeczytanie_wiadgrups;
+			}
+			set
+			{
+				this._przeczytanie_wiadgrups.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Grupa_wiadomosc_grupowa", Storage="_Grupa", ThisKey="id_grupy", OtherKey="id", IsForeignKey=true)]
+		public Grupa Grupa
+		{
+			get
+			{
+				return this._Grupa.Entity;
+			}
+			set
+			{
+				Grupa previousValue = this._Grupa.Entity;
+				if (((previousValue != value) 
+							|| (this._Grupa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Grupa.Entity = null;
+						previousValue.wiadomosc_grupowas.Remove(this);
+					}
+					this._Grupa.Entity = value;
+					if ((value != null))
+					{
+						value.wiadomosc_grupowas.Add(this);
+						this._id_grupy = value.id;
+					}
+					else
+					{
+						this._id_grupy = default(int);
+					}
+					this.SendPropertyChanged("Grupa");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_wiadomosc_grupowa", Storage="_Uzytkownik", ThisKey="login_nadawcy", OtherKey="login", IsForeignKey=true)]
+		public Uzytkownik Uzytkownik
+		{
+			get
+			{
+				return this._Uzytkownik.Entity;
+			}
+			set
+			{
+				Uzytkownik previousValue = this._Uzytkownik.Entity;
+				if (((previousValue != value) 
+							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Uzytkownik.Entity = null;
+						previousValue.wiadomosc_grupowas.Remove(this);
+					}
+					this._Uzytkownik.Entity = value;
+					if ((value != null))
+					{
+						value.wiadomosc_grupowas.Add(this);
+						this._login_nadawcy = value.login;
+					}
+					else
+					{
+						this._login_nadawcy = default(string);
+					}
+					this.SendPropertyChanged("Uzytkownik");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_przeczytanie_wiadgrups(przeczytanie_wiadgrup entity)
+		{
+			this.SendPropertyChanging();
+			entity.wiadomosc_grupowa = this;
+		}
+		
+		private void detach_przeczytanie_wiadgrups(przeczytanie_wiadgrup entity)
+		{
+			this.SendPropertyChanging();
+			entity.wiadomosc_grupowa = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Wydarzenie")]
 	public partial class Wydarzenie : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3636,7 +3636,7 @@ namespace Serwer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_organizatora", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login_organizatora", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string login_organizatora
 		{
 			get
