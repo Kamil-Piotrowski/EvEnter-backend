@@ -18,6 +18,28 @@ Odnośnik do aplikacji-klienta na system Android: (https://github.com/4R0NIN7/Ev
 - Michał Joński - Dokumentacja
 
 
+
+
+<-----------------------------**English below**----------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Group Project EvEnter
 
 ### Military University of Technology, Group I5M1S1
