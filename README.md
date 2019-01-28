@@ -18,3 +18,21 @@ Odnośnik do aplikacji-klienta na system Android: (https://github.com/4R0NIN7/Ev
 - Michał Joński - Dokumentacja
 
 
+# Group Project EvEnter
+
+### Military University of Technology, Group I5M1S1
+
+**EvEnter backend - Asp.Net Web Api**<br/>
+Link to Android client app: (https://github.com/4R0NIN7/Eventer)
+
+**Team:**
+- Piotr Szczepanek - Scrum Master, Android app
+- Kamil Piotrowski - backend and Android app
+- Paweł Frankowski - Azure deployment (student license)
+- Jerzy Hinc - database schema
+- Mateusz Rosa - Documentation
+- Paweł Skrzypkowski - Documentation
+- Mateusz Kowalski - Documentation
+- Kamil Kozik - Documentation
+- Patryk Fornal - Documentation
+- Michał Joński - Documentation
