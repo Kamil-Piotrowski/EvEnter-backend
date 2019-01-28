@@ -21,24 +21,7 @@ Odnośnik do aplikacji-klienta na system Android: (https://github.com/4R0NIN7/Ev
 
 
 <-----------------------------**English below**----------------------------->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 # Group Project EvEnter
 
